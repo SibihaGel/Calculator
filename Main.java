@@ -1,12 +1,9 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 
 public class Main {
-        public static void main(String[] args)
-        throws Exception {
+    public static void main(String[] args)
+            throws Exception {
 
         Scanner scn = new Scanner(System.in);
         String exp = scn.nextLine();
@@ -33,38 +30,33 @@ public class Main {
 
         if (data[1].length() > 10)
             throw new Exception("Введено больше 10 символов");
-       //if (action == '+') {
+        //if (action == '+') {
         if (data[0].contains(".")) throw new Exception("ERROR");
         if (data[0].contains(",")) throw new Exception("ERROR");
         if (data[1].contains(".")) throw new Exception("ERROR");
         if (data[1].contains(",")) throw new Exception("ERROR");
-      //  }
+        //  }
 
-      for (int i = 0; i < data.length; i++) {
-           data[i] = data[i].replace("\"", "");
+        for (int i = 0; i < data.length; i++) {
+            data[i] = data[i].replace("\"", "");
         }
-
         if (action == '+') {
 
-            // Переводим в int. Если введены римские, выкинет исключение
-         //   try {
-          //      String1 = Integer.parseInt(data[0]);
-          //      String2 = Integer.parseInt(data[1]);
-          //       = new Arabic(value1, value2);
-          //  } catch (NumberFormatException e) {
-           //     its_an_arabic_numbers = false;
-           //     //System.out.println("Введены римские цифры");
-            //    values = new String(data[0], data[1]);
-            //}
+            if (Pattern.matches("[0-9]+", data[0]) == true) {
 
+                if (Pattern.matches("[a-zA-Z]+", data[1]) == true) {
 
+                    throw new RuntimeException();
 
+                }  if (Pattern.matches("[а-яёА-ЯЁ]+", data[1]) == true) {
 
-
+                    throw new RuntimeException();
+                }
+            }
             printInQuotes(data[0] + data[1]);
 
-
-        } else if (action == '*') {
+        } else
+        if (action == '*') {
 
             int multiplier = Integer.parseInt(data[1]);
             String result = "";
@@ -73,11 +65,11 @@ public class Main {
                 result += data[0]; }
             printInQuotes(result);
         } else
-            if (action == '-') {
+        if (action == '-') {
             int index = data[0].indexOf(data[1]); //
             if (index == -1) {
                 printInQuotes(data[0]);
-        } else {
+            } else {
                 String result = data[0].substring(0, index); // вычитает значение подстроки от 0 по index (знака -)
                 result += data[0].substring(index + data[1].length()); // Возвращает значение с начала index по значение 2 включительно
                 printInQuotes(result);
@@ -87,15 +79,8 @@ public class Main {
             String result = data[0].substring(0, newLen);
             printInQuotes(result);
         }
-     /*   if (data[0].length() > 10)
-            throw new Exception("Введено больше 10 символов");
-
-        if (data[1].length() > 10)
-            throw new Exception("Введено больше 10 символов");
-
-      */
     }
-        static void printInQuotes(String text) {
+    static void printInQuotes(String text) {
 
         if (text.length() > 40) {
             String rez = text.substring(0, 40);
